@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum ReturnPieceStatus: string
 {
-    case NONE = 'none';
+    case GOOD = 'good';
     case MINOR_DAMAGE = 'minor_damage';
     case MODERATE_DAMAGE = 'moderate_damage';
     case SEVERE_DAMAGE = 'severe_damage';
@@ -13,7 +13,7 @@ enum ReturnPieceStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::NONE => 'Ninguno',
+            self::GOOD => 'Bueno',
             self::MINOR_DAMAGE => 'Daño Menor',
             self::MODERATE_DAMAGE => 'Daño Moderado',
             self::SEVERE_DAMAGE => 'Daño Severo',

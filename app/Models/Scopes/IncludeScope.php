@@ -13,7 +13,7 @@ class IncludeScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        //incluir relaciones
+        // incluir relaciones
         if (empty(request('include'))) {
             return;
         }

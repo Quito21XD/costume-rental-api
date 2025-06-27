@@ -16,6 +16,7 @@ class AuthController extends Controller implements HasMiddleware
             new Middleware('auth:api', except: ['register', 'login']),
         ];
     }
+
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -30,6 +31,7 @@ class AuthController extends Controller implements HasMiddleware
 
         return $this->login();
     }
+
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -63,7 +65,7 @@ class AuthController extends Controller implements HasMiddleware
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
         ]);
     }
 }

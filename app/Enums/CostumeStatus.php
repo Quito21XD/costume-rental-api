@@ -8,9 +8,9 @@ enum CostumeStatus: string
     case UNAVAILABLE = 'unavailable';
     case INCOMPLETE = 'incomplete';
 
-    public static function getStatusLabel(string $status): string
+    public function label(): string
     {
-        return match ($status) {
+        return match ($this) {
             self::AVAILABLE => 'Disponible',
             self::UNAVAILABLE => 'No disponible',
             self::INCOMPLETE => 'Incompleto',

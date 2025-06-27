@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CostumeController;
 use App\Http\Controllers\Api\PieceController;
+use App\Http\Controllers\Api\RentalController;
+use App\Http\Controllers\Api\ReturnRecordController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('auth/register', [AuthController::class, 'register']);
@@ -14,3 +16,5 @@ Route::post('auth/me', [AuthController::class, 'me']);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('costumes', CostumeController::class);
 Route::apiResource('pieces', PieceController::class);
+Route::apiResource('rentals', RentalController::class);
+Route::apiResource('return-records', ReturnRecordController::class);

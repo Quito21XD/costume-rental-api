@@ -13,7 +13,7 @@ class SortScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        //aplicar order
+        // aplicar order
         if (empty(request('sort'))) {
             return;
         }

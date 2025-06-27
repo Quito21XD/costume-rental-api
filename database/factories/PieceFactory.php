@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\PieceType;
+use App\Models\Size;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +19,12 @@ class PieceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
-            'replacement_cost' => $this->faker->randomFloat(2, 1, 1000),
-            'material' => $this->faker->word(),
-            'color' => $this->faker->colorName(),
+            'name' => $this->faker->word,
+            'replacement_cost' => $this->faker->randomFloat(2, 50, 1000),
+            'material' => $this->faker->word,
+            'color' => $this->faker->safeColorName,
+            'piece_type_id' => PieceType::factory(), // Relación con PieceType
+            'size_id' => Size::factory(), // Relación con Size
         ];
     }
 }

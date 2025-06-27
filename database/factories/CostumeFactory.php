@@ -21,6 +21,7 @@ class CostumeFactory extends Factory
             'name' => $this->faker->word(),
             'description' => $this->faker->sentence(),
             'gender' => $this->faker->randomElement,
+            'size' => $this->faker->randomElement(['xs', 's', 'm', 'l', 'xl']),
             'rental_price' => $this->faker->randomFloat(2, 10, 100),
             'status' => CostumeStatus::AVAILABLE,
             'created_at' => now(),

@@ -13,7 +13,7 @@ class SelectScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        //aplicar select
+        // aplicar select
         if (empty(request('select'))) {
             return;
         }

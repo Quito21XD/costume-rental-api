@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('ci')->unique();
             $table->string('email')->unique();
-            $table->integer('phone')->unique();
+            $table->string('phone')->unique();
             $table->string('address');
             $table->string('status');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

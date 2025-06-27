@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePieceRequest;
+use App\Http\Requests\UpdatePieceRequest;
 use App\Http\Resources\PieceResource;
 use App\Models\Piece;
-use Illuminate\Http\Request;
 
 class PieceController extends Controller
 {
@@ -15,23 +16,18 @@ class PieceController extends Controller
     public function index()
     {
         $pieces = Piece::getOrPaginate();
+
         return PieceResource::collection($pieces);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePieceRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'replacement_cost' => 'required|decimal:0,2|min:0',
-            'material' => 'required|string|max:255',
-            'color' => 'required|string|max:255',
-            'piece_type_id' => 'required|exists:piece_types,id',
-            'size_id' => 'required|exists:sizes,id',
-        ]);
+        $data = $request->validated();
         $piece = Piece::create($data);
+
         return PieceResource::make($piece);
     }
 
@@ -46,17 +42,11 @@ class PieceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Piece $piece)
+    public function update(UpdatePieceRequest $request, Piece $piece)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'replacement_cost' => 'required|decimal:0,2|min:0',
-            'material' => 'required|string|max:255',
-            'color' => 'required|string|max:255',
-            'piece_type_id' => 'required|exists:piece_types,id',
-            'size_id' => 'required|exists:sizes,id',
-        ]);
+        $data = $request->validated();
         $piece->update($data);
+
         return PieceResource::make($piece);
     }
 
@@ -66,6 +56,7 @@ class PieceController extends Controller
     public function destroy(Piece $piece)
     {
         $piece->delete();
+
         return response()->noContent();
     }
 }

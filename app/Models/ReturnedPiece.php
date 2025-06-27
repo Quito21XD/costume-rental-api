@@ -4,30 +4,33 @@ namespace App\Models;
 
 use App\Enums\ReturnPieceStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ReturnedPiece extends Model
+class ReturnedPiece extends Api
 {
     /** @use HasFactory<\Database\Factories\ReturnedPieceFactory> */
     use HasFactory;
+
     protected $fillable = [
-        'return_id',
+        'return_record_id',
+        'piece_id',
         'quantity',
-        'fine_per_piece',
-        'status',
+        'damage_fee',
+        'piece_status',
     ];
+
     protected $casts = [
-        'fine_per_piece' => 'decimal:2',
-        'status' => ReturnPieceStatus::class,
+        'damage_fee' => 'decimal:2',
+        'piece_status' => ReturnPieceStatus::class,
     ];
+
     public function returnRecord(): BelongsTo
     {
         return $this->belongsTo(ReturnRecord::class);
     }
-    public function maintenances(): HasMany
+
+    public function piece(): BelongsTo
     {
-        return $this->hasMany(Maintenance::class);
+        return $this->belongsTo(Piece::class);
     }
 }

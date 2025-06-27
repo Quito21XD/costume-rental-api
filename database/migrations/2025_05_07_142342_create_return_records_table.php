@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('returns', function (Blueprint $table) {
+        Schema::create('return_records', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rental_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('actual_return_date');
-            $table->decimal('fine');
+            $table->decimal('late_fee');
+            $table->string('status')->default('pending_maintenance');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('returns');
+        Schema::dropIfExists('return_records');
     }
 };

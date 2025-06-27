@@ -21,7 +21,7 @@ class PieceResource extends JsonResource
             'material' => $this->material,
             'color' => $this->color,
             'piece_type_id' => $this->piece_type_id,
-            'size_id' => $this->size_id
+            'size_id' => $this->size_id,
         ];
     }
 }

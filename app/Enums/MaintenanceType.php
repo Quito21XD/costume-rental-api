@@ -8,6 +8,7 @@ enum MaintenanceType: string
     case MINOR_REPAIR = 'minor_repair';
     case MODERATE_REPAIR = 'moderate_repair';
     case RETIRED = 'retired';
+
     public function label(): string
     {
         return match ($this) {

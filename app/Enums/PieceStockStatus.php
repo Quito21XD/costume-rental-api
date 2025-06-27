@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum CostumePieceStatus: string
+enum PieceStockStatus: string
 {
     case AVAILABLE = 'available';
     case RENTED = 'rented';

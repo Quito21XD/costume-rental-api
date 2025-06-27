@@ -13,7 +13,7 @@ class FilterScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        //aplicar filtros
+        // aplicar filtros
         if (empty(request('filters'))) {
             return;
         }

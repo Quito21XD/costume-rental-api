@@ -9,10 +9,12 @@ class Category extends Api
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
+
     protected $fillable = [
         'name',
         'description',
     ];
+
     public function costumes(): BelongsToMany
     {
         return $this->belongsToMany(Costume::class);

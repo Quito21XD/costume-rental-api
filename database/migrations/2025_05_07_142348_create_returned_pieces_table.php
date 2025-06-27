@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('returned_pieces', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('return_id')->constrained('returns')->onDelete('cascade');
+            $table->foreignId('return_record_id')->constrained('return_records')->onDelete('cascade');
+            $table->foreignId('piece_id')->constrained('pieces')->onDelete('cascade');
             $table->integer('quantity');
-            $table->decimal('fine_per_piece')->default(0);
-            $table->enum('status', ["none", "minor_damage", "moderate_damage", "severe_damage", "lost"]);
+            $table->decimal('damage_fee')->default(0); // penalizacion por estado
+            $table->string('piece_status')->default('good');
             $table->timestamps();
         });
     }

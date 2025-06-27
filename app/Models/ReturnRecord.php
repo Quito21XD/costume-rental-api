@@ -2,31 +2,38 @@
 
 namespace App\Models;
 
+use App\Enums\ReturnRecordStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ReturnRecord extends Model
+class ReturnRecord extends Api
 {
     /** @use HasFactory<\Database\Factories\ReturnRecordFactory> */
     use HasFactory;
-    protected $table = 'returns';
+
+    protected $table = 'return_records';
+
     protected $fillable = [
         'rental_id',
         'user_id',
         'actual_return_date',
-        'fine',
+        'late_fee',
+        'status',
     ];
+
     protected $casts = [
-        'fine' => 'decimal:2',
+        'late_fee' => 'decimal:2',
+        'status' => ReturnRecordStatus::class,
     ];
+
     public function rental(): BelongsTo
     {
         return $this->belongsTo(Rental::class);
     }
-    public function returnPieces(): HasMany
+
+    public function returnedPieces(): HasMany
     {
-        return $this->hasMany(ReturnedPiece::class);
+        return $this->HasMany(ReturnedPiece::class, 'returned_pieces');
     }
 }

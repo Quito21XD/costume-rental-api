@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('costume_id')->constrained('costumes')->onDelete('cascade');
             $table->foreignId('piece_id')->constrained('pieces')->onDelete('cascade');
-            $table->integer('stock');
-            $table->string('status')->default('available');
             $table->timestamps();
         });
     }

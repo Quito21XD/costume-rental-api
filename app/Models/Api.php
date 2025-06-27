@@ -19,12 +19,14 @@ class Api extends Model
             IncludeScope::class,
         ]);
     }
+
     public function scopeGetOrPaginate($query)
     {
-        //crear consulta
+        // crear consulta
         if (request('perPage')) {
             return $query->paginate(request('perPage'));
         }
+
         return $query->get();
     }
 }
